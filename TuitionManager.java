@@ -31,7 +31,11 @@ public class TuitionManager {
 
     };
 
-    
+    public void modifyPelajar() {
+
+    };
+
+
     public Pelajar findPelajar(String idPelajar) {
         Pelajar current = head;
         while (current != null) {
@@ -45,7 +49,7 @@ public class TuitionManager {
 
 
 
-    // --- STACK ---
+    // --- stack operation ---
 
     // rubrik : stack push
     public void addKeputusanExam() {
@@ -57,17 +61,20 @@ public class TuitionManager {
 
     };
 
+    //--- traverse list --- 
+
+    public void showAllPelajar(){
+
+    };
 
 
-    // --- SORTING ---
+    // --- sorting ---
     // rubrik : sorting  
     public void sortPelajarByName(){
 
     };
 
-    public void showAllPelajar(){
+    public void sortPelajarByID(){
 
     };
-    
-
 }
