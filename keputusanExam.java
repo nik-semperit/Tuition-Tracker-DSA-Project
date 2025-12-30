@@ -1,4 +1,4 @@
-public class keputusanExam { 
+public class KeputusanExam { 
     
     // Nik Akmal Rc24116
 
@@ -7,9 +7,9 @@ public class keputusanExam {
     public int markah; 
 
     //Rubrik : node relationship
-    public keputusanExam next;
+    public KeputusanExam next;
 
-    public keputusanExam(String subject, int markah) {
+    public KeputusanExam(String subject, int markah) {
         this.subject = subject;
         this.markah = markah;
         this.next = null;

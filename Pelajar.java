@@ -8,7 +8,7 @@ public class Pelajar {
     // Rubric : node relationship
 
     public Penjaga penjagaObject;
-    public keputusanExam keputusanExamTop; 
+    public KeputusanExam keputusanExamTop; 
 
     // Rubric : Linked list, pointer node seterusnya. 
 
@@ -20,6 +20,6 @@ public class Pelajar {
         this.penjagaObject = penjagaObject;
         this.keputusanExamTop = null; // Initialize list keputusan untuk setiap student
         this.next = null;
-        
+
     }
 }
