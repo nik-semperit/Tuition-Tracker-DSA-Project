@@ -1,0 +1,16 @@
+method diperlukan
+
+- interface
+delete pelajar
+modify pelajar details
+main
+
+- stack operation / report
+4. add keptusuan (push)
+5. remove last keputusan dari (pop)
+6. show all pelajar 
+
+- sort operation
+7. sort pelajar by name 
+8. sort pelajar by id 
+bubble sort la rasanye

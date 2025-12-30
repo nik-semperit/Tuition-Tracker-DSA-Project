@@ -7,8 +7,8 @@ public class TuitionManager {
     }
 
 
-    public void addPelajar(String nama, String idPelajar, Penjaga penjagaObject){
-        Pelajar newPelajarObject = new Pelajar(nama, idPelajar, penjagaObject);
+    public void addPelajar(String nama, String idPelajar, String alamatRumah, String jantina, int umur, Penjaga penjagaObject){
+        Pelajar newPelajarObject = new Pelajar(nama, idPelajar,  alamatRumah,  jantina,  umur, penjagaObject);
 
         if (head == null){
             head = newPelajarObject;
