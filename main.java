@@ -7,7 +7,7 @@ public class Main {
         System.out.println("Main Menu: 1");
         System.out.println("Please make a choice: ");
 
-
+        
         sc.close();
     }
 }
