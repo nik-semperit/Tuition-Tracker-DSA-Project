@@ -18,6 +18,7 @@ public class Pelajar {
 
     public Pelajar next;
 
+    
     public Pelajar(String nama, String idPelajar, String alamatRumah, String jantina, int umur, Penjaga penjagaObject) { 
         this.nama = nama;
         this.idPelajar = idPelajar; 

@@ -8,19 +8,26 @@ public class TuitionManager {
 
 
     public void addPelajar(String nama, String idPelajar, String alamatRumah, String jantina, int umur, Penjaga penjagaObject){
+
+        // buat node pelajar
         Pelajar newPelajarObject = new Pelajar(nama, idPelajar,  alamatRumah,  jantina,  umur, penjagaObject);
 
+        // check kalau list wujud ke tak, kalau tak wujud then buat node pertama
         if (head == null){
             head = newPelajarObject;
         }
 
-        else { 
+        else     { 
+
+            // current ialah head
             Pelajar current = head;
 
+            // selagi node seterusnya tak kosong, pergi ke node seterusnya 
             while (current.next != null) { 
                 current = current.next; 
             }
 
+            // Bila jumpa node seterusnya yang ada ruang kosong, sambungkan node ke tempat kosong tersebut
             current.next = newPelajarObject;
         }
 
@@ -37,11 +44,17 @@ public class TuitionManager {
 
 
     public Pelajar findPelajar(String idPelajar) {
+        // current node = first node
         Pelajar current = head;
+
+        // selagi node tidak kosong
         while (current != null) {
+
+            // Kalau idpelajar node idpelajar di node sekarang sama dengan idpelajar di node yang diminta, berhenti mencari (return) 
             if(current.idPelajar.equals(idPelajar)) { 
                 return current;
             }
+
             current = current.next;
         }
         return null;
@@ -63,7 +76,7 @@ public class TuitionManager {
 
     //--- traverse list --- 
 
-    public void showAllPelajar(){
+    public void showAllPelajar()    {
 
     };
 
