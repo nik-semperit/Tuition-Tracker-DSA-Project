@@ -1,9 +1,12 @@
 method diperlukan
 
+
+- main file
+main (akmal) 
+
 - interface
 delete pelajar
 modify pelajar details
-main
 
 - stack operation / report
 4. add keptusuan (push)
