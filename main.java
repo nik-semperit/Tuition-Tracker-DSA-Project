@@ -9,6 +9,7 @@ public class Main {
         System.out.println("---Main Menu---");
         System.out.println("Please make a choice: ");
         System.out.println("1. Add Student");
+        System.out.println("2. Add Subject Result");
         System.out.print("Choice : ");
         int choice = sc.nextInt();
         sc.nextLine();
@@ -63,7 +64,39 @@ public class Main {
 
             }
 
-                //TuitionManager.addPelajar();
+            case 2: {
+
+                System.out.print("Enter Student ID: ");
+                String searchID = sc.nextLine();
+
+                // Find student
+                Pelajar pelajar = tuitionManagerObject.findPelajar(searchID);
+
+                if (pelajar == null) {
+                    System.out.println("❌ Student not found.");
+                } 
+                else {
+                    // Student found → add subject result
+                    System.out.print("Enter Subject Name: ");
+                    String subject = sc.nextLine();
+
+                    System.out.print("Enter Markah: ");
+                    int markah = sc.nextInt();
+                    sc.nextLine(); // buang buffer
+
+                    System.out.print("Enter Grade: ");
+                    String gred = sc.nextLine();
+
+                    // STACK PUSH (KeputusanExam)
+                    KeputusanExam newExam = new KeputusanExam(subject, markah, gred);
+                    newExam.next = pelajar.keputusanExamTop;
+                    pelajar.keputusanExamTop = newExam;
+
+                    System.out.println("✅ Subject result added successfully.");
+                    }
+
+                    break;
+                }
         }
 
     sc.close();
