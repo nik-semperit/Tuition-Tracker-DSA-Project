@@ -113,31 +113,37 @@ public class TuitionManager {
     //--- traverse list --- 
 
     public void showAllPelajar()    {
+        
         Pelajar current = head;
 
         if (current == null) { 
             System.out.println("No Students in the database");
         }
 
-        System.out.println("List of students");
+        System.out.println("List of students with their respective grades");
 
+        //while student linked list tak habis lagi
         while (current != null) {
-            System.out.println(current.idPelajar);
-            System.out.println(current.nama);
+
+            System.out.println("===================================");
+            System.out.println(current.idPelajar + "-" + current.nama);
+            System.out.println("===================================");
+
             
             //traversing keputusan exam stack
             
             //check kalau student ada grades atau tidak, kalau tak print "end of grades"
             if (current.keputusanExamTop != null) {
-                
+                System.out.println("");
                 // traverse satu stack grade student, printing detail dia dan pergi ke node seterusnya, ulang selagi ada
               while (current.keputusanExamTop != null) { 
 
                 if (current.keputusanExamTop.subject != null) { 
-                System.out.println("Latest Subject: " + current.keputusanExamTop.subject);
-                System.out.println("Latest Markah: " + current.keputusanExamTop.markah);
-                System.out.println("Latest Gred: " + current.keputusanExamTop.markah);  
-
+                System.out.println("--------------------------------");
+                System.out.println("Subject: " + current.keputusanExamTop.subject);
+                System.out.println("Markah: " + current.keputusanExamTop.markah);
+                System.out.println("Gred: " + current.keputusanExamTop.markah);  
+                System.out.println("--------------------------------");
                 current = current.next; // go to next node 
 
                 } else {
@@ -146,10 +152,10 @@ public class TuitionManager {
             }
 
            } else {
-
-            System.out.println("No Grades found!");
-
+            System.out.println("No Grades found! for : " + current.nama);
+            
                   }
+
         }
     };
 
@@ -163,4 +169,6 @@ public class TuitionManager {
     public void sortPelajarByID(){
 
     };
+
+
 }
