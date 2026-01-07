@@ -134,7 +134,7 @@ public class TuitionManager {
                 // traverse satu stack grade student, printing detail dia dan pergi ke node seterusnya, ulang selagi ada
               while (current.keputusanExamTop != null) { 
 
-
+                //print grade details selagi ada, bila habis print end of grades
                 if (current.keputusanExamTop.subject != null) { 
                 System.out.println("--------------------------------");
                 System.out.println("Subject: " + current.keputusanExamTop.subject);
