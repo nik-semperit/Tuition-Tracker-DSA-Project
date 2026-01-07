@@ -129,14 +129,11 @@ public class TuitionManager {
             System.out.println(current.idPelajar + "-" + current.nama);
             System.out.println("===================================");
 
-            
-            //traversing keputusan exam stack
-            
-            //check kalau student ada grades atau tidak, kalau tak print "end of grades"
-            if (current.keputusanExamTop != null) {
-                System.out.println("");
+                //check kalau student ada grades atau tidak, kalau tak print "end of grades"
+
                 // traverse satu stack grade student, printing detail dia dan pergi ke node seterusnya, ulang selagi ada
               while (current.keputusanExamTop != null) { 
+
 
                 if (current.keputusanExamTop.subject != null) { 
                 System.out.println("--------------------------------");
@@ -149,14 +146,19 @@ public class TuitionManager {
                 } else {
                     System.out.println("End Of Grades");
                 }
+
+            } 
+
+            if (current.keputusanExamTop == null) {
+                System.out.println("No grades found for " + current.nama);
             }
+            //traversing keputusan exam stack
 
-           } else {
-            System.out.println("No Grades found! for : " + current.nama);
-            
-                  }
 
-        }
+        //go to next student
+        current = current.next;
+    }
+
     };
 
 
