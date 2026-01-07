@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class UI {
-
+    
     private TuitionManager tuitionManager;
 
     public UI(TuitionManager tuitionManager) {
@@ -61,6 +61,6 @@ public class UI {
     }
 
     public void deletePelajarUI(Scanner sc) { 
-        
+
     }
 }

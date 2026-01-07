@@ -50,7 +50,7 @@ public class Main {
                             break;
 
                         case 4:
-                           
+                           tuitionManager.showAllPelajar();
                             break;
 
                         case 0:
