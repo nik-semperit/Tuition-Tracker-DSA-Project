@@ -80,10 +80,10 @@ public class TuitionManager {
         KeputusanExam keputusanPelajar = new KeputusanExam(subjectName, markah, gred);
 
 
-        //sambungkan node keputusan baru ke keputusan lama 
+        //sambungkan node keputusan baru ke keputusan lama  (insert at head)
         keputusanPelajar.next = targetPelajar.keputusanExamTop; 
 
-        //keputusan pelajar
+        //keputusan pelajar swap most recent node at top
         targetPelajar.keputusanExamTop = keputusanPelajar;
         
 
@@ -114,13 +114,12 @@ public class TuitionManager {
             
             while (current.keputusanExamTop != null) { 
 
-
                 System.out.println("Latest Subject: " + current.keputusanExamTop.subject);
                 System.out.println("Latest Markah: " + current.keputusanExamTop.markah);
                 System.out.println("Latest Gred: " + current.keputusanExamTop.markah);  
                 
             }
-            
+
             current = current.next;
         }
     };

@@ -1,0 +1,5 @@
+enum ExamPhase {
+    boolean FIRST,
+    boolean MID,
+    boolaen FINAL
+}
