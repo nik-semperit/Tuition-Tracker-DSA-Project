@@ -65,8 +65,29 @@ public class TuitionManager {
     // --- stack operation ---
 
     // rubrik : stack push
-    public void addKeputusanExam() {
+    public void addKeputusanExam(String idpelajar, String subjectName, int markah, String gred) {
+        
+        //cari student
+        Pelajar targetPelajar = findPelajar(idpelajar);
 
+        //check kalau student tu wujud
+        if ( targetPelajar == null) { 
+            System.out.println("Error : Student ID " + idpelajar + "not found.");
+            return;
+        }
+
+        //buat node keputusan 
+        KeputusanExam keputusanPelajar = new KeputusanExam(subjectName, markah, gred);
+
+
+        //sambungkan node keputusan baru ke keputusan lama  (insert at head)
+        keputusanPelajar.next = targetPelajar.keputusanExamTop; 
+
+        //keputusan pelajar swap most recent node at top
+        targetPelajar.keputusanExamTop = keputusanPelajar;
+        
+
+        System.out.println("Exam result added for " + targetPelajar.nama);
     }; 
     
      // rubrik stack pop;
@@ -77,7 +98,30 @@ public class TuitionManager {
     //--- traverse list --- 
 
     public void showAllPelajar()    {
+        Pelajar current = head;
 
+        if (current == null) { 
+            System.out.println("No Students in the database");
+        }
+
+        System.out.println("List of students");
+
+        //traverse
+
+        while (current != null) {
+            System.out.println(current.idPelajar);
+            System.out.println(current.nama);
+            
+            while (current.keputusanExamTop != null) { 
+
+                System.out.println("Latest Subject: " + current.keputusanExamTop.subject);
+                System.out.println("Latest Markah: " + current.keputusanExamTop.markah);
+                System.out.println("Latest Gred: " + current.keputusanExamTop.markah);  
+                
+            }
+
+            current = current.next;
+        }
     };
 
 
