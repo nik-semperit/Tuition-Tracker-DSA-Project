@@ -60,5 +60,7 @@ public class UI {
         System.out.println("✅ Student added successfully.");
     }
 
-
+    public void deletePelajarUI(Scanner sc) { 
+        
+    }
 }
