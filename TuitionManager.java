@@ -153,9 +153,8 @@ public class TuitionManager {
                 System.out.println("No grades found for " + current.nama);
             }
             //traversing keputusan exam stack
-
-
-        //go to next student
+            
+        //goto next student
         current = current.next;
     }
 
