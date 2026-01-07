@@ -113,9 +113,14 @@ public class TuitionManager {
             System.out.println(current.nama);
             
             while (current.keputusanExamTop != null) { 
-                System.out.println("Latest Exam: " + current.keputusanExamTop.subject);
-                System.out.println("Latest Exam: " + current.keputusanExamTop.subject);
-                sc            }
+
+
+                System.out.println("Latest Subject: " + current.keputusanExamTop.subject);
+                System.out.println("Latest Markah: " + current.keputusanExamTop.markah);
+                System.out.println("Latest Gred: " + current.keputusanExamTop.markah);  
+                
+            }
+            
             current = current.next;
         }
     };

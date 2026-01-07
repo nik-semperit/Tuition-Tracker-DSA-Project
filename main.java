@@ -9,11 +9,8 @@ public class Main {
         System.out.println("---Main Menu---");
         System.out.println("Please make a choice: ");
         System.out.println("1. Add Student");
-<<<<<<< Updated upstream
-=======
         System.out.println("2. Add Subject Result");
         System.out.println("3. show all pelajar");
->>>>>>> Stashed changes
         System.out.print("Choice : ");
         int choice = sc.nextInt();
         sc.nextLine();
@@ -68,9 +65,6 @@ public class Main {
 
             }
 
-<<<<<<< Updated upstream
-                //TuitionManager.addPelajar();
-=======
             case 2: {
 
                 System.out.print("Enter Student ID: ");
@@ -108,7 +102,6 @@ public class Main {
             case 3: {
                 tuitionManagerObject.showAllPelajar();
             }
->>>>>>> Stashed changes
         }
 
     sc.close();
