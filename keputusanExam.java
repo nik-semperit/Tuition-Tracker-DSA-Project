@@ -1,7 +1,7 @@
 enum ExamPhase {
     FIRST,
     MID,
-    FIANL
+    FINAL
 }
 
 public class KeputusanExam {
