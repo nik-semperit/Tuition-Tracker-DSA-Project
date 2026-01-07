@@ -1,19 +1,21 @@
-public class KeputusanExam { 
-    
-    // Nik Akmal Rc24116
+enum ExamPhase {
+    FIRST,
+    MID,
+    FINAL
+}
 
-    //Rubrik : Pengunaan variable
+public class KeputusanExam {
     public String subject;
-    public int markah; 
-    public String gred; 
-
-    //Rubrik : node relationship
+    public int markah;
+    public String gred;
+    public ExamPhase examPhase;
     public KeputusanExam next;
 
-    public KeputusanExam(String subject, int markah, String gred) {
+    public KeputusanExam(String subject, int markah, String gred, ExamPhase examPhase) {
         this.subject = subject;
         this.markah = markah;
         this.gred = gred;
+        this.examPhase = examPhase;
         this.next = null;
     }
 }
