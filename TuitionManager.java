@@ -16,7 +16,7 @@ public class TuitionManager {
         if (head == null){
             head = newPelajarObject;
         }
-
+ 
         else     { 
 
             // current ialah head
@@ -66,7 +66,7 @@ public class TuitionManager {
 
     // rubrik : stack push
     public void addKeputusanExam(String idpelajar, String subjectName, int markah, String gred) {
-        
+
         //cari student
         Pelajar targetPelajar = findPelajar(idpelajar);
 
@@ -86,12 +86,27 @@ public class TuitionManager {
         //keputusan pelajar swap most recent node at top
         targetPelajar.keputusanExamTop = keputusanPelajar;
         
-
+        
         System.out.println("Exam result added for " + targetPelajar.nama);
     }; 
     
      // rubrik stack pop;
-    public void removeLastKeputusanExam() {
+    public void removeLastKeputusanExam(String idpelajar) {
+        Pelajar targetPelajar = findPelajar(idpelajar);
+        
+        if ( targetPelajar == null) { 
+                System.out.println("Error : Student ID " + idpelajar + "not found.");
+                return;
+        }
+
+        if (targetPelajar.keputusanExamTop == null) { 
+            System.out.println("No grade data available in " + targetPelajar.nama + "'s" + " grades.");
+            return;
+        }
+
+        KeputusanExam removedExam = targetPelajar.keputusanExamTop;
+        
+        System.out.println("Removing last's exam's result: " + removedExam.subject + "from " + targetPelajar.nama + "'s" + " database");
 
     };
 
@@ -106,21 +121,35 @@ public class TuitionManager {
 
         System.out.println("List of students");
 
-        //traverse
-
         while (current != null) {
             System.out.println(current.idPelajar);
             System.out.println(current.nama);
             
-            while (current.keputusanExamTop != null) { 
+            //traversing keputusan exam stack
+            
+            //check kalau student ada grades atau tidak, kalau tak print "end of grades"
+            if (current.keputusanExamTop != null) {
+                
+                // traverse satu stack grade student, printing detail dia dan pergi ke node seterusnya, ulang selagi ada
+              while (current.keputusanExamTop != null) { 
 
+                if (current.keputusanExamTop.subject != null) { 
                 System.out.println("Latest Subject: " + current.keputusanExamTop.subject);
                 System.out.println("Latest Markah: " + current.keputusanExamTop.markah);
                 System.out.println("Latest Gred: " + current.keputusanExamTop.markah);  
-                
+
+                current = current.next; // go to next node 
+
+                } else {
+                    System.out.println("End Of Grades");
+                }
             }
 
-            current = current.next;
+           } else {
+
+            System.out.println("No Grades found!");
+
+                  }
         }
     };
 
