@@ -64,9 +64,18 @@ public class TuitionManager {
     System.out.println("Student has been removed from the system");
     };
 
-    public void modifyPelajar() {
+    public void modifyPelajar(String idPelajar, String newAlamat, int newUmur) {
 
-    
+    Pelajar found = findPelajar(idPelajar);
+
+    if (found != null) {
+        found.alamatRumah = newAlamat;
+        found.umur = newUmur;
+        
+        System.out.println("Student information updated successfully.");
+    } else {
+        System.out.println("Error: Student with ID " + idPelajar + " not found.");
+    }
     };
 
 
