@@ -33,13 +33,40 @@ public class TuitionManager {
 
     };
 
+    // RC23325 Vikneswaran
 
-    public void deletePelajar() {
+    public void deletePelajar(String idPelajar) {
+    if (head == null) {
+        System.out.println("List is empty");
+        return;
+    }
 
+    if (head.idPelajar.equals(idPelajar)) {
+        head = head.next; 
+        System.out.println("Student has been removed from the system");
+        return;
+    }
+
+    Pelajar current = head;
+    Pelajar prev = null;
+
+    while (current != null && !current.idPelajar.equals(idPelajar)) {
+        prev = current;
+        current = current.next;
+    }
+
+    if (current == null) {
+        System.out.println("Student ID" + idPelajar + " cannot be found");
+        return;
+    }
+
+    prev.next = current.next;
+    System.out.println("Student has been removed from the system");
     };
 
     public void modifyPelajar() {
 
+    
     };
 
 
