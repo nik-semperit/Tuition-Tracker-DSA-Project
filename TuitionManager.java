@@ -190,32 +190,43 @@ public class TuitionManager {
 
     //--- traverse list --- 
 
-    public void showAllPelajar()    {
-        Pelajar current = head;
+   public void showAllPelajar() {
+    Pelajar current = head;
 
-        if (current == null) { 
-            System.out.println("No Students in the database");
-        }
+    if (current == null) { 
+        System.out.println("No Students in the database");
+        return; // Add return here to exit the method
+    }
 
-        System.out.println("List of students");
+    System.out.println("List of students");
 
-        //traverse
-
-        while (current != null) {
-            System.out.println(current.idPelajar);
-            System.out.println(current.nama);
+    // Traverse through all students
+    while (current != null) {
+        sleep(200);
+        System.out.println("\n=======================================");
+        System.out.println(" RECORD FOR STUDENT : " + current.nama + "  ID: " + current.idPelajar);
+        System.out.println("=======================================");
+        
+        if (current.keputusanExamTop != null) {
+            // Use a DIFFERENT variable for traversing exam results
+            KeputusanExam examCurrent = current.keputusanExamTop;
+            sleep(1300);
+            while (examCurrent != null) { 
+                System.out.println("-------------------------------------------------");
+                System.out.println("Subject: " + examCurrent.subject);
+                System.out.println("Markah: " + examCurrent.markah);
+                System.out.println("Gred: " + examCurrent.gred);  
+                examCurrent = examCurrent.next;
+            }   
             
-            while (current.keputusanExamTop != null) { 
-
-                System.out.println("Latest Subject: " + current.keputusanExamTop.subject);
-                System.out.println("Latest Markah: " + current.keputusanExamTop.markah);
-                System.out.println("Latest Gred: " + current.keputusanExamTop.markah);  
-                
-            }
-
-            current = current.next;
+            System.out.println("End of report for : " + current.nama);
+        } else { 
+            System.out.println("Grade records for " + current.nama + "  ID: " + current.idPelajar + " not found.");
         }
-    };
+
+        current = current.next; // Move to next student (OUTSIDE the exam loop)
+    }
+}
 
 
     // --- sorting ---
@@ -224,6 +235,7 @@ public class TuitionManager {
     // Sort by Name
    public void sortPelajarByName() {
     if (head == null || head.next == null) {
+        System.out.println("Empty list");
         // List is empty or ada 1 ja student.
         return;
     }
@@ -335,4 +347,104 @@ private void swapPelajarData(Pelajar p1, Pelajar p2) {
     p1.penjagaObject = p2.penjagaObject;
     p2.penjagaObject = tempPenjaga;
 }
+
+// data dan utility dibawah
+
+public void loadDummyData() {
+// 1. Male student - Ahmad
+    addPelajar("Ahmad bin Ali", "S001", "No. 12, Jalan Melati, Kuala Lumpur", "L", 15, new Penjaga("Ali bin Hassan", "012-3456789", "Bapa", "Engineer"));
+
+    // 2. Female student - Siti
+    addPelajar("Siti Nurhaliza", "S002", "Blok A-3-5, Taman Damai, Petaling Jaya", "P", 14, new Penjaga("Maimunah binti Ahmad", "013-9876543", "Ibu", "Teacher"));
+
+    // 3. Male student - Kumar
+    addPelajar("Kumar a/l Rajan", "S003", "15, Lorong Kenari 3, Shah Alam", "L", 16, new Penjaga("Rajan a/l Muthu", "019-2345678", "Bapa", "Accountant"));
+
+    // 4. Female student - Mei Ling
+    addPelajar("Tan Mei Ling", "S004", "88, Jalan Bunga Raya, Ipoh", "P", 15, new Penjaga("Tan Chee Keong", "016-7654321", "Bapa", "Businessman"));
+
+    // 5. Male student - Danial
+    addPelajar("Danial Izzat", "S005", "23-A, Taman Sri Muda, Selangor", "L", 13, new Penjaga("Zainab binti Osman", "017-8889999", "Ibu", "Nurse"));
+
+    // 6. Female student - Aisha
+    addPelajar("Aisha Sofea", "S006", "No. 7, Jalan Merbau, Johor Bahru", "P", 14, new Penjaga("Fatimah binti Yusof", "018-3334444", "Ibu", "Doctor"));
+
+    // 7. Male student - Wei Jie
+    addPelajar("Lim Wei Jie", "S007", "Block C-12-8, Plaza Indah, Penang", "L", 16, new Penjaga("Lim Ah Hock", "011-2223333", "Bapa", "Chef"));
+
+    // 8. Female student - Priya
+    addPelajar("Priya a/p Suresh", "S008", "45, Taman Sentosa, Klang", "P", 13, new Penjaga("Latha a/p Krishnan", "014-5556666", "Ibu", "Pharmacist"));
+
+    // 9. Male student - Amin
+    addPelajar("Amin Hakim", "S009", "78, Jalan Cempaka 5, Kuantan", "L", 15, new Penjaga("Hakim bin Razak", "015-7778888", "Bapa", "Pilot"));
+
+    // 10. Female student - Nurul
+    addPelajar("Nurul Aina", "S010", "32-B, Taman Melawati, Ampang", "P", 14, new Penjaga("Rozita binti Ibrahim", "010-1112222", "Ibu", "Lawyer"));
+
+    System.out.println("\n Dummy data loaded successfully");
+
+    System.out.println("\n Dummy grades data loading");
+
+    // Student S001 - Ahmad (3 subjects)
+    addKeputusanExam("S001", "Mathematics", 85, "A");
+    addKeputusanExam("S001", "Science", 78, "B+");
+    addKeputusanExam("S001", "English", 92, "A+");
+
+    // Student S002 - Siti (4 subjects)
+    addKeputusanExam("S002", "Mathematics", 90, "A+");
+    addKeputusanExam("S002", "Bahasa Melayu", 88, "A");
+    addKeputusanExam("S002", "History", 76, "B+");
+    addKeputusanExam("S002", "Science", 82, "A-");
+
+    // Student S003 - Kumar (3 subjects)
+    addKeputusanExam("S003", "Physics", 95, "A+");
+    addKeputusanExam("S003", "Chemistry", 89, "A");
+    addKeputusanExam("S003", "Mathematics", 91, "A+");
+
+    // Student S004 - Mei Ling (4 subjects)
+    addKeputusanExam("S004", "English", 87, "A");
+    addKeputusanExam("S004", "Chinese", 93, "A+");
+    addKeputusanExam("S004", "Mathematics", 79, "B+");
+    addKeputusanExam("S004", "Art", 85, "A");
+
+    // Student S005 - Danial (3 subjects)
+    addKeputusanExam("S005", "Science", 72, "B");
+    addKeputusanExam("S005", "Mathematics", 68, "B-");
+    addKeputusanExam("S005", "Geography", 75, "B+");
+
+    // Student S006 - Aisha (5 subjects)
+    addKeputusanExam("S006", "Biology", 94, "A+");
+    addKeputusanExam("S006", "Chemistry", 91, "A+");
+    addKeputusanExam("S006", "Physics", 88, "A");
+    addKeputusanExam("S006", "Mathematics", 90, "A+");
+    addKeputusanExam("S006", "English", 86, "A");
+
+    // Student S007 - Wei Jie (3 subjects)
+    addKeputusanExam("S007", "Economics", 80, "A-");
+    addKeputusanExam("S007", "Business Studies", 83, "A-");
+    addKeputusanExam("S007", "Accounting", 77, "B+");
+
+    // Student S008 - Priya (4 subjects)
+    addKeputusanExam("S008", "Tamil", 96, "A+");
+    addKeputusanExam("S008", "Mathematics", 84, "A");
+    addKeputusanExam("S008", "Science", 81, "A-");
+    addKeputusanExam("S008", "Music", 89, "A");
+
+    // Student S009 - Amin (3 subjects)
+    addKeputusanExam("S009", "Islamic Studies", 92, "A+");
+    addKeputusanExam("S009", "Arabic", 87, "A");
+    addKeputusanExam("S009", "History", 79, "B+");
+
+    System.out.println("\n Dummy grade data loaded successfully");
+
+}
+
+public void sleep(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -31,6 +31,7 @@ public class Main {
                     System.out.println("2. Delete Student");
                     System.out.println("3. Modify Student");
                     System.out.println("4. Display Student");
+                    System.out.println("5. Load Dummy Data");
                     System.out.println("0. Back");
                     System.out.print("Student Choice: ");
 
@@ -55,6 +56,9 @@ public class Main {
                         case 4:
                             tuitionManager.showAllPelajar();
                             break;
+                        
+                        case 5:
+                            tuitionManager.loadDummyData();
 
                         case 0:
                             break;
@@ -82,7 +86,10 @@ public class Main {
                             break;
 
                         case 2:
-                            ui.removeLastKeputusanExamUI(sc);
+                            System.out.println("Please enter your id:");
+                            String idpelajar = sc.nextLine();
+
+                            tuitionManager.removeLastKeputusanExam(idpelajar);
                             break;
 
 
@@ -97,9 +104,36 @@ public class Main {
                 // ================== SORT ==================
                 case 3: {
                     System.out.println("\n--- Sort Student  ---");
-                    System.out.println("1. Show all Student");
-                    System.out.println("2. Sort student by name");
+                    System.out.println("1. Sort student by name");
                     System.out.println("2. Sort student by id");
+                    System.out.println("3. Sort stundet by gender");
+                    System.out.println("0. Back");
+                    System.out.print("Sort Choice: ");
+
+                    int sortoice = sc.nextInt();
+                    sc.nextLine();
+
+                    switch(sortoice){
+                        case 1:{
+                            tuitionManager.sortPelajarByName();
+                            System.out.println("System has sorted student by name");
+                            break;
+                        }
+                        case 2:{
+                            tuitionManager.sortPelajarByID();
+                            System.out.println("System has sorted student by ID");
+                            break;
+                        }
+                        case 3:{
+                            tuitionManager.sortPelajarByJantina();
+                            System.out.println("System has sorted student by Gender");
+                            break;
+                        }
+                        case 0:{
+                            break;
+                        }
+                    }
+                    break;
                 }
 
                 // ================= EXIT =================
