@@ -1,13 +1,7 @@
-public class KeputusanExam { 
-    
-    // Nik Akmal Rc24116
-
-    //Rubrik : Pengunaan variable
+public class KeputusanExam {
     public String subject;
-    public int markah; 
-    public String gred; 
-
-    //Rubrik : node relationship
+    public int markah;
+    public String gred;
     public KeputusanExam next;
 
     public KeputusanExam(String subject, int markah, String gred) {
