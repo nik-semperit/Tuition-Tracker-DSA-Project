@@ -82,7 +82,11 @@ public class Main {
                             break;
 
                         case 2:
+<<<<<<< Updated upstream
                             
+=======
+                            ui.deletePelajarUI(sc);
+>>>>>>> Stashed changes
                             break;
 
                         case 3:
