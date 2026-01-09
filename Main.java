@@ -15,6 +15,7 @@ public class Main {
             System.out.println("\n===== MAIN MENU =====");
             System.out.println("1. Manage Student");
             System.out.println("2. Manage Student Result");
+            System.out.println("3. Sort Student");
             System.out.println("0. Exit");
             System.out.print("Choice: ");
 
@@ -42,15 +43,17 @@ public class Main {
                             break;
 
                         case 2:
-                            ui.deletePelajarUI(sc);
+                            System.out.println("Please enter you student id:");
+                            String idnumber = sc.nextLine();
+                            tuitionManager.deletePelajar(idnumber);
                             break;
 
                         case 3:
-                            
+                            ui.modifyPelajarUI(sc);
                             break;
 
                         case 4:
-                           tuitionManager.showAllPelajar();
+                            tuitionManager.showAllPelajar();
                             break;
 
                         case 0:
@@ -66,8 +69,7 @@ public class Main {
                 case 2: {
                     System.out.println("\n--- Manage Student Result ---");
                     System.out.println("1. Add Student Result");
-                    System.out.println("2. Delete Student Result");
-                    System.out.println("3. Modify Student Result");
+                    System.out.println("2. Remove last Student Result");
                     System.out.println("0. Back");
                     System.out.print("Result Choice: ");
 
@@ -76,16 +78,13 @@ public class Main {
 
                     switch (resChoice) {
                         case 1:
-                           
+                            ui.addKeputusanExamUI(sc);
                             break;
 
                         case 2:
-                            
+                            ui.removeLastKeputusanExamUI(sc);
                             break;
 
-                        case 3:
-                            
-                            break;
 
                         case 0:
                             break;
@@ -94,6 +93,13 @@ public class Main {
                             System.out.println("❌ Invalid result menu choice.");
                     }
                     break;
+                }
+                // ================== SORT ==================
+                case 3: {
+                    System.out.println("\n--- Sort Student  ---");
+                    System.out.println("1. Show all Student");
+                    System.out.println("2. Sort student by name");
+                    System.out.println("2. Sort student by id");
                 }
 
                 // ================= EXIT =================

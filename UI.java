@@ -60,7 +60,45 @@ public class UI {
         System.out.println("✅ Student added successfully.");
     }
 
-    public void deletePelajarUI(Scanner sc) { 
-
+    public void modifyPelajarUI(Scanner sc) {
+        System.out.print("Please enter the student's ID to modify: ");
+        String idPelajar = sc.nextLine();
+        
+        System.out.print("Enter new address (or press Enter to skip): ");
+        String newAddress = sc.nextLine();
+        
+        System.out.print("Enter new age (or -1 to skip): ");
+        int newAge = sc.nextInt();
+        sc.nextLine(); // buang buffer
+        
+        // Use null if address is empty
+        if (newAddress.trim().isEmpty()) {
+            newAddress = null;
+        }
+        
+        tuitionManager.modifyPelajar(idPelajar, newAddress, newAge);
     }
+
+    public void addKeputusanExamUI(Scanner sc) {
+        System.out.print("Please enter the student's ID: ");
+        String idPelajar = sc.nextLine();
+        
+        System.out.print("Please enter the subject name: ");
+        String subjectName = sc.nextLine();
+        
+        System.out.print("Please enter the exam score (markah): ");
+        int markah = sc.nextInt();
+        sc.nextLine(); // buang buffer
+        
+        System.out.print("Please enter the grade (gred): ");
+        String gred = sc.nextLine();
+        
+        tuitionManager.addKeputusanExam(idPelajar, subjectName, markah, gred);
+    }
+
+    public void deletePelajarUI(Scanner sc) { 
+        // Implementation for deleting student
+    }
+
+    
 }

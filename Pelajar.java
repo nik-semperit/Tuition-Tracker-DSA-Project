@@ -31,4 +31,9 @@ public class Pelajar {
         this.next = null;
 
     }
+
+    public String getIdPelajar() {
+        return idPelajar;
+    }
+
 }
