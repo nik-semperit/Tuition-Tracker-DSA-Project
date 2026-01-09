@@ -164,6 +164,7 @@ public class TuitionManager {
     // --- sorting ---
     // rubrik : sorting  
 
+    // Sort by Name
    public void sortPelajarByName() {
     if (head == null || head.next == null) {
         // List is empty or ada 1 ja student.
@@ -190,6 +191,59 @@ public class TuitionManager {
         last = current; // After each pass, the largest element "bubbles" to the end
     } while (swapped);
 }
+
+// Sort by ID
+public void sortPelajarByID() {
+    if (head == null || head.next == null) {
+        return;
+    }
+
+    boolean swapped;
+    Pelajar current;
+    Pelajar last = null;
+
+    do {
+        swapped = false;
+        current = head;
+
+        while (current.next != last) {
+            // Compare current dan Student IDs yang seterusnya.
+            if (current.idPelajar.compareTo(current.next.idPelajar) > 0) {
+                swapPelajarData(current, current.next);
+                swapped = true;
+            }
+            current = current.next;
+        }
+        last = current; // Largest ID bubbles to the end
+    } while (swapped);
+}
+
+//Sort by Jantina
+public void sortPelajarByJantina() {
+    if (head == null || head.next == null) {
+        return;
+    }
+
+    boolean swapped;
+    Pelajar current;
+    Pelajar last = null;
+
+    do {
+        swapped = false;
+        current = head;
+
+        while (current.next != last) {
+            // Compare Jantina of student terkini ngan seterusnya.
+            if (current.jantina.compareToIgnoreCase(current.next.jantina) > 0) {
+                swapPelajarData(current, current.next);
+                swapped = true;
+            }
+            current = current.next;
+        }
+        last = current; // "largest" jantina (P), moves to the end.
+    } while (swapped);
+}
+
 
 // Method utk Swap data between dua node Pelajar
 private void swapPelajarData(Pelajar p1, Pelajar p2) {
