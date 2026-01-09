@@ -178,6 +178,8 @@ public class TuitionManager {
 
             if (current.keputusanExamTop == null) {
                 System.out.println("No grades found for " + current.nama);
+                System.out.println("-------------------------------");
+
             }
             //traversing keputusan exam stack
             
