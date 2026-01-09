@@ -16,7 +16,7 @@ public class TuitionManager {
         if (head == null){
             head = newPelajarObject;
         }
- 
+
         else     { 
 
             // current ialah head
@@ -64,9 +64,18 @@ public class TuitionManager {
     System.out.println("Student has been removed from the system");
     };
 
-    public void modifyPelajar() {
+    public void modifyPelajar(String idPelajar, String newAlamat, int newUmur) {
 
-    
+    Pelajar found = findPelajar(idPelajar);
+
+    if (found != null) {
+        found.alamatRumah = newAlamat;
+        found.umur = newUmur;
+        
+        System.out.println("Student information updated successfully.");
+    } else {
+        System.out.println("Error: Student with ID " + idPelajar + " not found.");
+    }
     };
 
 
@@ -93,7 +102,7 @@ public class TuitionManager {
 
     // rubrik : stack push
     public void addKeputusanExam(String idpelajar, String subjectName, int markah, String gred) {
-
+        
         //cari student
         Pelajar targetPelajar = findPelajar(idpelajar);
 
@@ -113,92 +122,106 @@ public class TuitionManager {
         //keputusan pelajar swap most recent node at top
         targetPelajar.keputusanExamTop = keputusanPelajar;
         
-        
+
         System.out.println("Exam result added for " + targetPelajar.nama);
     }; 
     
      // rubrik stack pop;
-    public void removeLastKeputusanExam(String idpelajar) {
-        Pelajar targetPelajar = findPelajar(idpelajar);
-        
-        if ( targetPelajar == null) { 
-                System.out.println("Error : Student ID " + idpelajar + "not found.");
-                return;
-        }
-
-        if (targetPelajar.keputusanExamTop == null) { 
-            System.out.println("No grade data available in " + targetPelajar.nama + "'s" + " grades.");
-            return;
-        }
-
-        KeputusanExam removedExam = targetPelajar.keputusanExamTop;
-        
-        System.out.println("Removing last's exam's result: " + removedExam.subject + "from " + targetPelajar.nama + "'s" + " database");
+    public void removeLastKeputusanExam() {
 
     };
 
     //--- traverse list --- 
 
     public void showAllPelajar()    {
-        
         Pelajar current = head;
 
         if (current == null) { 
             System.out.println("No Students in the database");
         }
 
-        System.out.println("List of students with their respective grades");
+        System.out.println("List of students");
 
-        //while student linked list tak habis lagi
+        //traverse
+
         while (current != null) {
-
-            System.out.println("===================================");
-            System.out.println(current.idPelajar + "-" + current.nama);
-            System.out.println("===================================");
-
-                //check kalau student ada grades atau tidak, kalau tak print "end of grades"
-
-                // traverse satu stack grade student, printing detail dia dan pergi ke node seterusnya, ulang selagi ada
-              while (current.keputusanExamTop != null) { 
-
-
-                if (current.keputusanExamTop.subject != null) { 
-                System.out.println("--------------------------------");
-                System.out.println("Subject: " + current.keputusanExamTop.subject);
-                System.out.println("Markah: " + current.keputusanExamTop.markah);
-                System.out.println("Gred: " + current.keputusanExamTop.markah);  
-                System.out.println("--------------------------------");
-                current = current.next; // go to next node 
-
-                } else {
-                    System.out.println("End Of Grades");
-                }
-
-            } 
-
-            if (current.keputusanExamTop == null) {
-                System.out.println("No grades found for " + current.nama);
-                System.out.println("-------------------------------");
-
-            }
-            //traversing keputusan exam stack
+            System.out.println(current.idPelajar);
+            System.out.println(current.nama);
             
-        //goto next student
-        current = current.next;
-    }
+            while (current.keputusanExamTop != null) { 
 
+                System.out.println("Latest Subject: " + current.keputusanExamTop.subject);
+                System.out.println("Latest Markah: " + current.keputusanExamTop.markah);
+                System.out.println("Latest Gred: " + current.keputusanExamTop.markah);  
+                
+            }
+
+            current = current.next;
+        }
     };
 
 
     // --- sorting ---
     // rubrik : sorting  
-    public void sortPelajarByName(){
 
-    };
+   public void sortPelajarByName() {
+    if (head == null || head.next == null) {
+        // List is empty or ada 1 ja student.
+        return;
+    }
 
-    public void sortPelajarByID(){
+    boolean swapped;
+    Pelajar current;
+    Pelajar last = null; 
 
-    };
+    do {
+        swapped = false;
+        current = head;
 
+        while (current.next != last) {
 
+            if (current.nama.compareToIgnoreCase(current.next.nama) > 0) {
+                // Swap the data, bukan node.
+                swapPelajarData(current, current.next);
+                swapped = true;
+            }
+            current = current.next;
+        }
+        last = current; // After each pass, the largest element "bubbles" to the end
+    } while (swapped);
+}
+
+// Method utk Swap data between dua node Pelajar
+private void swapPelajarData(Pelajar p1, Pelajar p2) {
+
+    // Swap  utk nama
+    String tempNama = p1.nama;
+    p1.nama = p2.nama;
+    p2.nama = tempNama;
+
+    // Swap utk idPelajar
+    String tempId = p1.idPelajar;
+    p1.idPelajar = p2.idPelajar;
+    p2.idPelajar = tempId;
+
+    // Swap utk alamatRumah
+    String tempAlamat = p1.alamatRumah;
+    p1.alamatRumah = p2.alamatRumah;
+    p2.alamatRumah = tempAlamat;
+
+    // Swap utk jantina
+    String tempJantina = p1.jantina;
+    p1.jantina = p2.jantina;
+    p2.jantina = tempJantina;
+
+    // Swap utk umur
+    int tempUmur = p1.umur;
+    p1.umur = p2.umur;
+    p2.umur = tempUmur;
+
+    // Swap utk penjagaObject
+    Penjaga tempPenjaga = p1.penjagaObject;
+    p1.penjagaObject = p2.penjagaObject;
+    p2.penjagaObject = tempPenjaga;
+}
 }
