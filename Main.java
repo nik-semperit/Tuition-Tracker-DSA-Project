@@ -15,6 +15,7 @@ public class Main {
             System.out.println("\n===== MAIN MENU =====");
             System.out.println("1. Manage Student");
             System.out.println("2. Manage Student Result");
+            System.out.println("3. Sort Student");
             System.out.println("0. Exit");
             System.out.print("Choice: ");
 
@@ -52,7 +53,7 @@ public class Main {
                             break;
 
                         case 4:
-                           tuitionManager.showAllPelajar();
+                            tuitionManager.showAllPelajar();
                             break;
 
                         case 0:
@@ -68,8 +69,7 @@ public class Main {
                 case 2: {
                     System.out.println("\n--- Manage Student Result ---");
                     System.out.println("1. Add Student Result");
-                    System.out.println("2. Delete Student Result");
-                    System.out.println("3. Modify Student Result");
+                    System.out.println("2. Remove last Student Result");
                     System.out.println("0. Back");
                     System.out.print("Result Choice: ");
 
@@ -82,7 +82,7 @@ public class Main {
                             break;
 
                         case 2:
-                            
+                            ui.removeLastKeputusanExamUI(sc);
                             break;
 
                         case 3:
@@ -96,6 +96,10 @@ public class Main {
                             System.out.println("❌ Invalid result menu choice.");
                     }
                     break;
+                }
+                // ================== SORT ==================
+                case 3: {
+                    
                 }
 
                 // ================= EXIT =================
