@@ -114,7 +114,30 @@ public class TuitionManager {
         return null;
     };
 
+    // RC23325 Vikneswaran
 
+    // rubrik : searching
+    public void searchPelajarByID(String idPelajar) {
+        Pelajar current = head; 
+        boolean found = false;
+
+        while (current != null) {
+            if (current.idPelajar.equals(idPelajar)) {
+                System.out.println("\nStudent Found");
+                System.out.println("Name: " + current.nama);
+                System.out.println("ID: " + current.idPelajar);
+                System.out.println("Address: " + current.alamatRumah);
+                System.out.println("Age: " + current.umur);
+                found = true;
+                break;
+            }
+            current = current.next;
+        }
+
+        if (!found) {
+            System.out.println("Student with ID " + idPelajar + " is not registered in the system.");
+        }
+    }
 
     // --- stack operation ---
 
