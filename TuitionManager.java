@@ -190,44 +190,43 @@ public class TuitionManager {
 
     //--- traverse list --- 
 
-    public void showAllPelajar()    {
-        Pelajar current = head;
+   public void showAllPelajar() {
+    Pelajar current = head;
 
-        if (current == null) { 
-            System.out.println("No Students in the database");
-        }
+    if (current == null) { 
+        System.out.println("No Students in the database");
+        return; // Add return here to exit the method
+    }
 
-        System.out.println("List of students");
+    System.out.println("List of students");
 
-        //traverse
-
-        while (current != null) {
-            System.out.println("=======================================-");
-            System.out.println(" RECORD FOR STUDENT : " + current.nama + "  ID: " + current.idPelajar );
-            System.out.println("=======================================-");
+    // Traverse through all students
+    while (current != null) {
+        System.out.println("=======================================");
+        System.out.println(" RECORD FOR STUDENT : " + current.nama + "  ID: " + current.idPelajar);
+        System.out.println("=======================================");
+        
+        if (current.keputusanExamTop != null) {
+            // Use a DIFFERENT variable for traversing exam results
+            KeputusanExam examCurrent = current.keputusanExamTop;
             
-            if (current.keputusanExamTop != null) {
-
-            while (current.keputusanExamTop != null) { 
-                
+            while (examCurrent != null) { 
                 System.out.println("-------------------------------------------------");
-                System.out.println("Latest Subject: " + current.keputusanExamTop.subject);
-                System.out.println("Latest Markah: " + current.keputusanExamTop.markah);
-                System.out.println("Latest Gred: " + current.keputusanExamTop.markah);  
+                System.out.println("Subject: " + examCurrent.subject);
+                System.out.println("Markah: " + examCurrent.markah);
+                System.out.println("Gred: " + examCurrent.gred);  // Fixed: was showing markah twice
                 
-                current = current.next;
-
+                examCurrent = examCurrent.next; // Move to next exam result
             }   
             
             System.out.println("End of report for : " + current.nama);
-        }   else { 
+        } else { 
             System.out.println("Grade records for " + current.nama + "  ID: " + current.idPelajar + " not found.");
-            break; 
         }
 
-        }
-        
-    };
+        current = current.next; // Move to next student (OUTSIDE the exam loop)
+    }
+}
 
 
     // --- sorting ---
@@ -236,6 +235,7 @@ public class TuitionManager {
     // Sort by Name
    public void sortPelajarByName() {
     if (head == null || head.next == null) {
+        System.out.println("Empty list");
         // List is empty or ada 1 ja student.
         return;
     }
