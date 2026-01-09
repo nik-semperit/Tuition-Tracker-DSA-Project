@@ -127,9 +127,25 @@ public class TuitionManager {
     }; 
     
      // rubrik stack pop;
-    public void removeLastKeputusanExam() {
+    public void removeLastKeputusanExam(String idpelajar) {
+        Pelajar targetPelajar = findPelajar(idpelajar);
+        
+        if ( targetPelajar == null) { 
+                System.out.println("Error : Student ID " + idpelajar + "not found.");
+                return;
+        }
+
+        if (targetPelajar.keputusanExamTop == null) { 
+            System.out.println("No grade data available in " + targetPelajar.nama + "'s" + " grades.");
+            return;
+        }
+
+        KeputusanExam removedExam = targetPelajar.keputusanExamTop;
+        
+        System.out.println("Removing last's exam's result: " + removedExam.subject + "from " + targetPelajar.nama + "'s" + " database");
 
     };
+
 
     //--- traverse list --- 
 
