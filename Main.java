@@ -42,7 +42,7 @@ public class Main {
                             break;
 
                         case 2:
-                            ui.deletePelajarUI(sc);
+                           
                             break;
 
                         case 3:
