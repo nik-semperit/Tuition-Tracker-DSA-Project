@@ -24,12 +24,16 @@ public class TuitionManager {
 
             // selagi node seterusnya tak kosong, pergi ke node seterusnya 
             while (current.next != null) { 
-                current = current.next; 
+                current = current.next;
             }
 
             // Bila jumpa node seterusnya yang ada ruang kosong, sambungkan node ke tempat kosong tersebut
             current.next = newPelajarObject;
+            System.out.println("Student added : " + current.nama);
+            sleep(300);
+
         }
+
 
     };
 
@@ -78,7 +82,7 @@ public class TuitionManager {
     Pelajar found = findPelajar(idPelajar);
 
     if (found == null) {
-        System.out.println("Error: Student with ID " + idPelajar + " not found.");
+        System.out.println("\nError: Student with ID " + idPelajar + " not found.");
         return;
     }
 
@@ -149,7 +153,7 @@ public class TuitionManager {
 
         //check kalau student tu wujud
         if ( targetPelajar == null) { 
-            System.out.println("Error : Student ID " + idpelajar + "not found.");
+            System.out.println("Error : Student ID " + idpelajar + " not found.");
             return;
         }
 
@@ -163,8 +167,9 @@ public class TuitionManager {
         //keputusan pelajar swap most recent node at top
         targetPelajar.keputusanExamTop = keputusanPelajar;
         
-
+        sleep(300);
         System.out.println("Exam result added for " + targetPelajar.nama);
+
     }; 
     
      // rubrik stack pop;
@@ -172,7 +177,7 @@ public class TuitionManager {
         Pelajar targetPelajar = findPelajar(idpelajar);
         
         if ( targetPelajar == null) { 
-                System.out.println("Error : Student ID " + idpelajar + "not found.");
+                System.out.println("Error : Student ID " + idpelajar + " not found.");
                 return;
         }
 
@@ -190,42 +195,65 @@ public class TuitionManager {
 
     //--- traverse list --- 
 
-   public void showAllPelajar() {
+public void showAllPelajar() {
     Pelajar current = head;
 
-    if (current == null) { 
-        System.out.println("No Students in the database");
-        return; // Add return here to exit the method
+    // --- CASE: EMPTY DATABASE ---
+    if (current == null) {
+        System.out.println("\n" + Colors.CYAN + "╔══════════════════════════════════════════════════╗");
+        System.out.println("║ " + Colors.RED + "         NO STUDENTS IN THE DATABASE            " + Colors.CYAN + " ║");
+        System.out.println("╚══════════════════════════════════════════════════╝" + Colors.RESET);
+        return;
     }
 
-    System.out.println("List of students");
+    System.out.println("\n" + Colors.CYAN + Colors.BOLD + ">>> LIST OF STUDENTS GENERATING..." + Colors.RESET);
 
-    // Traverse through all students
+    // --- TRAVERSE STUDENTS ---
     while (current != null) {
-        sleep(200);
-        System.out.println("\n=======================================");
-        System.out.println(" RECORD FOR STUDENT : " + current.nama + "  ID: " + current.idPelajar);
-        System.out.println("=======================================");
+        sleep(200); // Keep your delay effect
         
+        // Top of the Student Card
+        System.out.println("\n" + Colors.CYAN + "╔══════════════════════════════════════════════════╗");
+        System.out.println("║ " + Colors.YELLOW + "STUDENT RECORD" + Colors.CYAN + "                                   ║");
+        System.out.println("╠══════════════════════════════════════════════════╣" + Colors.RESET);
+        
+        // Student Details (Using printf for alignment)
+        System.out.printf(Colors.CYAN + "║" + Colors.WHITE + " Name   : %-39s " + Colors.CYAN + "║\n", current.nama);
+        System.out.printf(Colors.CYAN + "║" + Colors.WHITE + " ID     : %-39s " + Colors.CYAN + "║\n", current.idPelajar);
+        System.out.printf(Colors.CYAN + "║" + Colors.WHITE + " Gender : %-39s " + Colors.CYAN + "║\n", current.jantina);
+
+
+        // --- EXAM RESULTS SECTION ---
         if (current.keputusanExamTop != null) {
-            // Use a DIFFERENT variable for traversing exam results
             KeputusanExam examCurrent = current.keputusanExamTop;
-            sleep(1300);
-            while (examCurrent != null) { 
-                System.out.println("-------------------------------------------------");
-                System.out.println("Subject: " + examCurrent.subject);
-                System.out.println("Markah: " + examCurrent.markah);
-                System.out.println("Gred: " + examCurrent.gred);  
-                examCurrent = examCurrent.next;
-            }   
             
-            System.out.println("End of report for : " + current.nama);
-        } else { 
-            System.out.println("Grade records for " + current.nama + "  ID: " + current.idPelajar + " not found.");
+            // Table Header for Grades
+            System.out.println(Colors.CYAN + "╠══════════════════════════════════════════════════╣");
+            System.out.println("║ " + Colors.GREEN + "SUBJECT                MARK    GRADE             " + Colors.CYAN + "║");
+            System.out.println("╠══════════════════════════════════════════════════╣" + Colors.RESET);
+
+            sleep(500); // Slightly reduced sleep for smoother UX
+            
+            while (examCurrent != null) {
+                // Formatting: Subject (22 chars), Mark (7 chars), Grade (15 chars)
+                System.out.printf(Colors.CYAN + "║ " + Colors.WHITE + "%-22s %-7s %-15s " + Colors.CYAN + "  ║\n", 
+                                  examCurrent.subject, 
+                                  examCurrent.markah, 
+                                  examCurrent.gred);
+                examCurrent = examCurrent.next;
+            }
+        } else {
+            // Case: Student exists but has no grades
+            System.out.println(Colors.CYAN + "╠══════════════════════════════════════════════════╣");
+            System.out.println("║ " + Colors.RED + "NO GRADE RECORDS FOUND                           " + Colors.CYAN + "║");
         }
 
-        current = current.next; // Move to next student (OUTSIDE the exam loop)
+        // Bottom of the Student Card
+        System.out.println(Colors.CYAN + "╚══════════════════════════════════════════════════╝" + Colors.RESET);
+
+        current = current.next; // Move to next student
     }
+    System.out.println(Colors.CYAN + ">>> END OF LIST" + Colors.RESET);
 }
 
 
@@ -381,9 +409,6 @@ public void loadDummyData() {
     // 10. Female student - Nurul
     addPelajar("Nurul Aina", "S010", "32-B, Taman Melawati, Ampang", "P", 14, new Penjaga("Rozita binti Ibrahim", "010-1112222", "Ibu", "Lawyer"));
 
-    System.out.println("\n Dummy data loaded successfully");
-
-    System.out.println("\n Dummy grades data loading");
 
     // Student S001 - Ahmad (3 subjects)
     addKeputusanExam("S001", "Mathematics", 85, "A");
@@ -435,7 +460,7 @@ public void loadDummyData() {
     addKeputusanExam("S009", "Arabic", 87, "A");
     addKeputusanExam("S009", "History", 79, "B+");
 
-    System.out.println("\n Dummy grade data loaded successfully");
+    System.out.println(Colors.YELLOW + "\n System : Loaded dummy data loaded successfully.");
 
 }
 
