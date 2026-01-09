@@ -16,7 +16,7 @@ public class UI {
         String jantina;
         int umur;
 
-        System.out.print("Please enter the student's name: ");
+        System.out.print("\nPlease enter the student's name: ");
         nama = sc.nextLine();
 
         System.out.print("Please enter the student's ID: ");
@@ -25,7 +25,7 @@ public class UI {
         System.out.print("Please enter the student's Address: ");
         alamatRumah = sc.nextLine();
 
-        System.out.print("Please enter the student's Gender: ");
+        System.out.print("Please enter the student's Gender (L/P): ");
         jantina = sc.nextLine();
 
         System.out.print("Please enter the student's Age: ");
