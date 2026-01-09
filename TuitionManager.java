@@ -179,19 +179,31 @@ public class TuitionManager {
         //traverse
 
         while (current != null) {
-            System.out.println(current.idPelajar);
-            System.out.println(current.nama);
+            System.out.println("=======================================-");
+            System.out.println(" RECORD FOR STUDENT : " + current.nama + "  ID: " + current.idPelajar );
+            System.out.println("=======================================-");
             
-            while (current.keputusanExamTop != null) { 
+            if (current.keputusanExamTop != null) {
 
+            while (current.keputusanExamTop != null) { 
+                
+                System.out.println("-------------------------------------------------");
                 System.out.println("Latest Subject: " + current.keputusanExamTop.subject);
                 System.out.println("Latest Markah: " + current.keputusanExamTop.markah);
                 System.out.println("Latest Gred: " + current.keputusanExamTop.markah);  
                 
-            }
+                current = current.next;
 
-            current = current.next;
+            }   
+            
+            System.out.println("End of report for : " + current.nama);
+        }   else { 
+            System.out.println("Grade records for " + current.nama + "  ID: " + current.idPelajar + " not found.");
+            break; 
         }
+
+        }
+        
     };
 
 
