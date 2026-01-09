@@ -85,9 +85,6 @@ public class Main {
                             ui.removeLastKeputusanExamUI(sc);
                             break;
 
-                        case 3:
-                            
-                            break;
 
                         case 0:
                             break;
@@ -99,7 +96,10 @@ public class Main {
                 }
                 // ================== SORT ==================
                 case 3: {
-                    
+                    System.out.println("\n--- Sort Student  ---");
+                    System.out.println("1. Show all Student");
+                    System.out.println("2. Sort student by name");
+                    System.out.println("2. Sort student by id");
                 }
 
                 // ================= EXIT =================

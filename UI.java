@@ -99,4 +99,6 @@ public class UI {
     public void deletePelajarUI(Scanner sc) { 
         // Implementation for deleting student
     }
+
+    
 }
