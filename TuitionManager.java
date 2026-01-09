@@ -36,47 +36,65 @@ public class TuitionManager {
     // RC23325 Vikneswaran
 
     public void deletePelajar(String idPelajar) {
+
+    // Step 1: check if list empty
     if (head == null) {
         System.out.println("List is empty");
         return;
     }
 
-    if (head.idPelajar.equals(idPelajar)) {
-        head = head.next; 
+    // Step 2: use findPelajar
+    Pelajar target = findPelajar(idPelajar);
+
+    if (target == null) {
+        System.out.println("Student ID " + idPelajar + " cannot be found");
+        return;
+    }
+
+    // Step 3: if target is head
+    if (head == target) {
+        head = head.next;
         System.out.println("Student has been removed from the system");
         return;
     }
 
+    // Step 4: find previous node
     Pelajar current = head;
-    Pelajar prev = null;
 
-    while (current != null && !current.idPelajar.equals(idPelajar)) {
-        prev = current;
+    while (current.next != null && current.next != target) {
         current = current.next;
     }
 
-    if (current == null) {
-        System.out.println("Student ID" + idPelajar + " cannot be found");
-        return;
+    // Step 5: bypass target
+    if (current.next == target) {
+        current.next = target.next;
+        System.out.println("Student has been removed from the system");
     }
+}
 
-    prev.next = current.next;
-    System.out.println("Student has been removed from the system");
-    };
 
     public void modifyPelajar(String idPelajar, String newAlamat, int newUmur) {
 
     Pelajar found = findPelajar(idPelajar);
 
-    if (found != null) {
-        found.alamatRumah = newAlamat;
-        found.umur = newUmur;
-        
-        System.out.println("Student information updated successfully.");
-    } else {
+    if (found == null) {
         System.out.println("Error: Student with ID " + idPelajar + " not found.");
+        return;
     }
-    };
+
+    // Modify address only if provided
+    if (newAlamat != null) {
+        found.alamatRumah = newAlamat;
+    }
+
+    // Modify age only if provided
+    if (newUmur != -1) {
+        found.umur = newUmur;
+    }
+
+    System.out.println("Student information updated successfully.");
+}
+
 
 
     public Pelajar findPelajar(String idPelajar) {

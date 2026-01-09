@@ -42,11 +42,13 @@ public class Main {
                             break;
 
                         case 2:
-                           
+                            System.out.println("Please enter you student id:");
+                            String idnumber = sc.nextLine();
+                            tuitionManager.deletePelajar(idnumber);
                             break;
 
                         case 3:
-                            
+                            ui.modifyPelajarUI(sc);
                             break;
 
                         case 4:
@@ -76,7 +78,7 @@ public class Main {
 
                     switch (resChoice) {
                         case 1:
-                           
+                            ui.addKeputusanExamUI(sc);
                             break;
 
                         case 2:
