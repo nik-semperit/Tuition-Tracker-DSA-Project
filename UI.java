@@ -57,7 +57,6 @@ public class UI {
                 jantina, umur, penjagaObject
         );
 
-        System.out.println("✅ Student added successfully.");
     }
 
     public void modifyPelajarUI(Scanner sc) {

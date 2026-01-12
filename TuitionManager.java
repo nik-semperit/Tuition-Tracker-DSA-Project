@@ -15,6 +15,8 @@ public class TuitionManager {
         // check kalau list wujud ke tak, kalau tak wujud then buat node pertama
         if (head == null){
             head = newPelajarObject;
+            System.out.println("\nStudent Added into system : " + newPelajarObject.nama);
+
         }
 
         else     { 
@@ -29,7 +31,7 @@ public class TuitionManager {
 
             // Bila jumpa node seterusnya yang ada ruang kosong, sambungkan node ke tempat kosong tersebut
             current.next = newPelajarObject;
-            System.out.println("Student added : " + current.nama);
+            System.out.println("Student added into system : " + newPelajarObject.nama);
             sleep(300);
 
         }
@@ -121,27 +123,80 @@ public class TuitionManager {
     // RC23325 Vikneswaran
 
     // rubrik : searching
-    public void searchPelajarByID(String idPelajar) {
-        Pelajar current = head; 
-        boolean found = false;
+   public void searchPelajarByID(String idPelajar) {
+    Pelajar current = head; 
+    boolean found = false;
 
-        while (current != null) {
-            if (current.idPelajar.equals(idPelajar)) {
-                System.out.println("\nStudent Found");
-                System.out.println("Name: " + current.nama);
-                System.out.println("ID: " + current.idPelajar);
-                System.out.println("Address: " + current.alamatRumah);
-                System.out.println("Age: " + current.umur);
-                found = true;
-                break;
+    while (current != null) {
+        if (current.idPelajar.equals(idPelajar)) {
+
+            found = true;
+            
+            // Top of the Student Card
+            System.out.println("\n" + Colors.CYAN + "╔═══════════════════════════════════════════════════╗");
+            System.out.println("║ " + Colors.YELLOW + "STUDENT FOUND" + Colors.CYAN + "                                     ║");
+            System.out.println("╠═══════════════════════════════════════════════════╣" + Colors.RESET);
+            
+            // Student Details
+            System.out.printf(Colors.CYAN + "║" + Colors.WHITE + " Name    : %-39s " + Colors.CYAN + "║\n", current.nama);
+            System.out.printf(Colors.CYAN + "║" + Colors.WHITE + " ID      : %-39s " + Colors.CYAN + "║\n", current.idPelajar);
+            System.out.printf(Colors.CYAN + "║" + Colors.WHITE + " Gender  : %-39s " + Colors.CYAN + "║\n", current.jantina);
+            System.out.printf(Colors.CYAN + "║" + Colors.WHITE + " Age     : %-39s " + Colors.CYAN + "║\n", current.umur);
+            System.out.printf(Colors.CYAN + "║" + Colors.WHITE + " Address : %-39s " + Colors.CYAN + "║\n", current.alamatRumah);
+            
+            // Guardian Information Section
+            System.out.println(Colors.CYAN + "╠═══════════════════════════════════════════════════╣");
+            System.out.println("║ " + Colors.YELLOW + "GUARDIAN INFORMATION" + Colors.CYAN + "                              ║");
+            System.out.println("╠═══════════════════════════════════════════════════╣" + Colors.RESET);
+            
+            if (current.penjagaObject != null) {
+                System.out.printf(Colors.CYAN + "║" + Colors.WHITE + " Name         : %-34s " + Colors.CYAN + "║\n", current.penjagaObject.nama);
+                System.out.printf(Colors.CYAN + "║" + Colors.WHITE + " Phone        : %-34s " + Colors.CYAN + "║\n", current.penjagaObject.nomborPhone);
+                System.out.printf(Colors.CYAN + "║" + Colors.WHITE + " Relationship : %-34s " + Colors.CYAN + "║\n", current.penjagaObject.hubungan);
+                System.out.printf(Colors.CYAN + "║" + Colors.WHITE + " Occupation   : %-34s " + Colors.CYAN + "║\n", current.penjagaObject.pekerjaan);
+            } else {
+                System.out.println(Colors.CYAN + "║ " + Colors.RED + "NO GUARDIAN INFORMATION AVAILABLE" + Colors.CYAN + "                 ║");
             }
-            current = current.next;
+            
+            // Exam Results Section
+            if (current.keputusanExamTop != null) {
+                KeputusanExam examCurrent = current.keputusanExamTop;
+                
+                System.out.println(Colors.CYAN + "╠═══════════════════════════════════════════════════╣");
+                System.out.println("║ " + Colors.GREEN + "EXAM RESULTS" + Colors.CYAN + "                                      ║");
+                System.out.println("╠═══════════════════════════════════════════════════╣");
+                System.out.println("║ " + Colors.GREEN + "SUBJECT                MARK    GRADE              " + Colors.CYAN + "║");
+                System.out.println("╠═══════════════════════════════════════════════════╣" + Colors.RESET);
+                
+                while (examCurrent != null) {
+                    System.out.printf(Colors.CYAN + "║ " + Colors.WHITE + "%-22s %-7s %-15s " + Colors.CYAN + "   ║\n", 
+                                      examCurrent.subject, 
+                                      examCurrent.markah, 
+                                      examCurrent.gred);
+                    examCurrent = examCurrent.next;
+                }
+            } else {
+                System.out.println(Colors.CYAN + "╠═══════════════════════════════════════════════════╣");
+                System.out.println("║ " + Colors.RED + "NO EXAM RESULTS FOUND" + Colors.CYAN + "                             ║");
+            }
+            
+            // Bottom of the Student Card
+            System.out.println(Colors.CYAN + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
+            
+            break;
         }
-
-        if (!found) {
-            System.out.println("Student with ID " + idPelajar + " is not registered in the system.");
-        }
+        current = current.next;
     }
+
+    if (!found) {
+        System.out.println("\n" + Colors.CYAN + "╔═══════════════════════════════════════════════════╗");
+        System.out.println("║ " + Colors.RED + "STUDENT NOT FOUND" + Colors.CYAN + "                                 ║");
+        System.out.println("╠═══════════════════════════════════════════════════╣" + Colors.RESET);
+        System.out.printf(Colors.CYAN + "║" + Colors.WHITE + " Student ID %-7s is not registered in the       " + Colors.CYAN + "║\n", "'" + idPelajar + "'");
+        System.out.println(Colors.CYAN + "║" + Colors.WHITE + " system.                                           " + Colors.CYAN + "║");
+        System.out.println(Colors.CYAN + "╚═══════════════════════════════════════════════════╝" + Colors.RESET);
+    }
+}
 
     // --- stack operation ---
 
@@ -188,7 +243,7 @@ public class TuitionManager {
 
         KeputusanExam removedExam = targetPelajar.keputusanExamTop;
         
-        System.out.println("Removing last's exam's result: " + removedExam.subject + "from " + targetPelajar.nama + "'s" + " database");
+        System.out.println("Removing last exam result: " + removedExam.subject + " from " + targetPelajar.nama + "'s" + " database");
 
     };
 
