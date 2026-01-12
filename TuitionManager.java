@@ -15,6 +15,8 @@ public class TuitionManager {
         // check kalau list wujud ke tak, kalau tak wujud then buat node pertama
         if (head == null){
             head = newPelajarObject;
+            System.out.println("\nStudent Added into system : " + newPelajarObject.nama);
+
         }
 
         else     { 
@@ -29,7 +31,7 @@ public class TuitionManager {
 
             // Bila jumpa node seterusnya yang ada ruang kosong, sambungkan node ke tempat kosong tersebut
             current.next = newPelajarObject;
-            System.out.println("Student added : " + current.nama);
+            System.out.println("Student added into system : " + newPelajarObject.nama);
             sleep(300);
 
         }
@@ -175,7 +177,7 @@ public class TuitionManager {
                 }
             } else {
                 System.out.println(Colors.CYAN + "╠═══════════════════════════════════════════════════╣");
-                System.out.println("║ " + Colors.RED + "NO EXAM RESULTS FOUND" + Colors.CYAN + "                              ║");
+                System.out.println("║ " + Colors.RED + "NO EXAM RESULTS FOUND" + Colors.CYAN + "                             ║");
             }
             
             // Bottom of the Student Card
@@ -241,7 +243,7 @@ public class TuitionManager {
 
         KeputusanExam removedExam = targetPelajar.keputusanExamTop;
         
-        System.out.println("Removing last's exam's result: " + removedExam.subject + "from " + targetPelajar.nama + "'s" + " database");
+        System.out.println("Removing last exam result: " + removedExam.subject + " from " + targetPelajar.nama + "'s" + " database");
 
     };
 

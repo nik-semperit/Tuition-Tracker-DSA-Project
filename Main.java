@@ -52,7 +52,7 @@ public class Main {
                             break;
 
                         case 2:
-                            System.out.println("Please enter you student id:");
+                            System.out.print("Please enter you student ID: ");
                             String idnumber = sc.nextLine();
                             tuitionManager.deletePelajar(idnumber);
                             break;
@@ -97,7 +97,7 @@ public class Main {
                             break;
 
                         case 2:
-                            System.out.println("Please enter your id:");
+                            System.out.print("Please enter your student ID: ");
                             String idpelajar = sc.nextLine();
 
                             tuitionManager.removeLastKeputusanExam(idpelajar);
@@ -169,7 +169,6 @@ public class Main {
                     System.out.println("❌ Invalid main menu choice.");
             }
         }
-
         sc.close();
     }
 }
